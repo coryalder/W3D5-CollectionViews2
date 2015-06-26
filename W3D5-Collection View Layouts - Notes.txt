@@ -1,0 +1,55 @@
+1. Create a UICollectionViewController
+2. Embed in a navigation bar
+3. add a plus button, link it up to an action that adds a random color to the objects array.
+
+	// in viewDidLoad
+    srand48(time(0));
+
+	// in button action
+    CGFloat random1 = drand48();
+    CGFloat random2 = drand48();
+    CGFloat random3 = drand48();
+
+    UIColor *randomColor = [UIColor colorWithRed:random1 green:random2 blue:random3 alpha:1.0];
+
+4. configure each cell to use the correct random color.
+
+5. make a uicollectionviewlayout subclass called RandomLayout
+
+6. set it in the storyboard
+
+7. add a cellAttributes mutable array property to my RandomLayout
+
+8. write filtration function (layoutAttributesForElementsInRect)
+
+9. now the hard part:
+
+	// collectionViewContentSize
+	return (CGSize){
+		CGRectGetWidth(self.collectionView.frame)*2, 		CGRectGetHeight(self.collectionView.frame)
+	};
+
+
+	pre-calculate all the positions in prepareLayout
+	
+	1. get collectionViewContentSize now.
+	
+	2. get number of items from collectionView
+	// point out we are making a single-section-only layout
+	
+	3. get the max height and width of our random space.
+	
+	4. gen random number between 0 and our maximum width, and height
+	
+	5. create a new layout attribute:
+	
+	([UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:])
+	
+	6. create a new indexPath (to use in #5)
+	
+	7. add attribute object to array.
+	
+Demo more common case: tweaking an existing flow layout.
+
+
+
